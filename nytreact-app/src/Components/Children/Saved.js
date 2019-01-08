@@ -1,21 +1,21 @@
 // Include React 
-var React = require('react');
+import React from 'react';
 
 // This is the saved component. It will be used to show a log of saved articles.
-var Saved = React.createClass({
+class Saved extends React.Component{
 
-	getInitialState: function(){
-		return {
+
+		state =  {
 			savedArticles: []
 		}
-	},
 
-	clickToDelete: function(result){
+
+	clickToDelete =(result)=>{
 		this.props.deleteArticle(result);
 
-	},
+	}
 
-	componentWillReceiveProps: function(nextProps){
+	componentWillReceiveProps =(nextProps)=>{
 		var that = this;
 		console.log(nextProps);
 		var myResults = nextProps.savedArticles.map(function(search, i){
@@ -24,10 +24,10 @@ var Saved = React.createClass({
 		});
 
 		this.setState({savedArticles: myResults});
-	},
+	}
 
 	// Here we render the function
-	render: function(){
+	render(){
 
 		return(
 
@@ -44,9 +44,9 @@ var Saved = React.createClass({
 
 		)
 	}
-});
+};
 
 
 
 // Export the component back for use in other files
-module.exports = Saved;
+export default Saved;

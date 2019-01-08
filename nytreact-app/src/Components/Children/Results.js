@@ -1,26 +1,25 @@
 // Include React 
-var React = require('react');
+import React from 'react'
 
 // Component creation
-var Results = React.createClass({
+class Results extends React.Component{
 
-	getInitialState: function(){
-		return {
+        state = {
 			title: "",
 			date: "",
 			url: "",
 			results: []
 		}
-	},
+
 
 	// When a user clicks save article
-	clickToSave: function(result){
+	clickToSave =(result)=>{
 
 		this.props.saveArticle(result.headline.main, result.pub_date, result.web_url);
 
-	},
+	}
 
-	componentWillReceiveProps: function(nextProps){
+	componentWillReceiveProps = (nextProps)=>{
 		var that = this;
 		var myResults = nextProps.results.map(function(search, i){
 			var boundClick = that.clickToSave.bind(that, search);
@@ -28,10 +27,10 @@ var Results = React.createClass({
 		});
 
 		this.setState({results: myResults});
-	},
+	}
 	
 	// Here we render the function
-	render: function(){
+	render(){
 		return(
 
 			<div className="panel panel-warning">
@@ -45,7 +44,7 @@ var Results = React.createClass({
 
 		)
 	}
-});
+};
 
 // Export the component back for use in other files
-module.exports = Results;
+export default Results;
